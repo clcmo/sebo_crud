@@ -1,5 +1,5 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php'; // Carrega o Composer
 
-// Seu código da aplicação aqui
+require __DIR__ . '/../routes/web.php';
