@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Editar Produto</h1>
+    <form action="/produtos/editar/{{ produto.id }}" method="post">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" class="form-control {% if erros.nome %}is-invalid{% endif %}" id="nome" name="nome" value="{{ produto.nome }}">
+            {% if erros.nome %}<div class="invalid-feedback">{{ erros.nome }}</div>{% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição:</label>
+            <textarea class="form-control {% if erros.descricao %}is-invalid{% endif %}" id="descricao" name="descricao">{{ produto.descricao }}</textarea>
+            {% if erros.descricao %}<div class="invalid-feedback">{{ erros.descricao }}</div>{% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="preco" class="form-label">Preço:</label>
+            <input type="number" step="0.01" class="form-control {% if erros.preco %}is-invalid{% endif %}" id="preco" name="preco" value="{{ produto.preco }}">
+            {% if erros.preco %}<div class="invalid-feedback">{{ erros.preco }}</div>{% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        <a href="/produtos" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}
