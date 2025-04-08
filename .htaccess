@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# Remove a extensão .php (se o arquivo existir)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/.]+)$ $1.php [L]
+
+# Remove a extensão .html (se o arquivo existir)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^/.]+)$ $1.html [L]
+
+# Redireciona solicitações com barra no final para sem barra (para evitar conteúdo duplicado)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# Redireciona solicitações sem barra no final para com barra (se for um diretório existente)
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^([^/.]+)$ $1/ [L,R=301]
